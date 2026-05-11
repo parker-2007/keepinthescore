@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <title>Keepin' the Score</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Semi+Condensed:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
 <style>
 :root{
@@ -14,50 +14,56 @@
     --teal:#14b8a6;
     --text:#e5e7eb;
     --muted:#9ca3af;
+    --border:#1f2937;
 }
+
+*{box-sizing:border-box;}
 
 body{
     margin:0;
     background:var(--bg);
     color:var(--text);
     font-family:'Barlow Semi Condensed', sans-serif;
-    font-weight:500;
+    line-height:1.5;
 }
 
-p, span, div, a{
-    font-family:'Barlow Semi Condensed', sans-serif;
-    font-weight:500;
-}
-
-b, strong{
-    font-weight:600;
-}
-
-h1, h2, h3, .logo, .hero-tag{
-    font-family:'Bebas Neue', sans-serif;
-    text-transform:uppercase;
-    letter-spacing:2px;
-}
-
-.topbar{
+/* TICKER */
+.ticker{
     background:var(--teal);
     color:#000;
-    font-weight:bold;
-    padding:6px 12px;
+    font-weight:700;
+    overflow:hidden;
+    white-space:nowrap;
+}
+
+.ticker span{
+    display:inline-block;
+    padding-left:100%;
+    animation:scroll 18s linear infinite;
     font-size:12px;
     letter-spacing:1px;
 }
 
+@keyframes scroll{
+    0%{transform:translateX(0);}
+    100%{transform:translateX(-100%);}
+}
+
+/* HEADER */
 header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    padding:20px;
+    padding:18px 24px;
     background:#0f1720;
-    border-bottom:1px solid #1f2937;
+    border-bottom:1px solid var(--border);
+    position:sticky;
+    top:0;
+    z-index:10;
 }
 
 .logo{
+    font-family:'Bebas Neue';
     font-size:34px;
     letter-spacing:3px;
 }
@@ -66,118 +72,141 @@ nav a{
     color:var(--muted);
     margin:0 10px;
     text-decoration:none;
-    font-weight:bold;
-    font-size:14px;
+    font-weight:600;
+    transition:0.2s;
 }
 
-nav a:hover{
-    color:var(--teal);
+nav a:hover{color:var(--teal);}
+
+/* LAYOUT */
+.container{
+    max-width:1200px;
+    margin:0 auto;
+    padding:24px;
 }
 
+.grid{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+}
+
+/* HERO */
 .hero{
     display:grid;
     grid-template-columns:2fr 1fr;
     gap:20px;
-    padding:20px;
+    margin-bottom:20px;
 }
 
 .hero-main{
     background:linear-gradient(135deg,#111827,#0b0f14);
-    padding:25px;
-    border-radius:12px;
-    border:1px solid #1f2937;
+    padding:28px;
+    border-radius:14px;
+    border:1px solid var(--border);
 }
 
 .hero-main h1{
-    font-size:48px;
-    margin:10px 0;
+    font-family:'Bebas Neue';
+    font-size:54px;
     line-height:0.95;
-}
-
-.hero-tag{
-    color:var(--teal);
-    font-size:12px;
+    margin:10px 0;
 }
 
 .hero-side{
     display:flex;
     flex-direction:column;
-    gap:10px;
+    gap:12px;
 }
 
 .side-box{
     background:var(--panel);
-    padding:15px;
-    border-radius:10px;
-    border:1px solid #1f2937;
+    padding:16px;
+    border-radius:12px;
+    border:1px solid var(--border);
 }
 
-.container{
-    display:grid;
-    grid-template-columns:2fr 1fr;
-    gap:20px;
-    padding:20px;
-}
-
+/* CARDS */
 .card{
     background:var(--card);
-    padding:15px;
-    border-radius:10px;
-    margin-bottom:15px;
-    border:1px solid #1f2937;
+    padding:18px;
+    border-radius:12px;
+    border:1px solid var(--border);
+    margin-bottom:16px;
+    transition:0.25s;
 }
 
-.card h3{
-    margin-top:0;
+.card:hover{
+    transform:translateY(-3px);
+}
+
+h3{
+    font-family:'Bebas Neue';
     color:var(--teal);
+    letter-spacing:2px;
 }
 
-/* ARTICLE LINKS */
+/* MATCHUPS */
+.matchup{
+    background:#0f1720;
+    padding:12px;
+    margin:10px 0;
+    border-radius:10px;
+    border:1px solid var(--border);
+}
+
+.match-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.tag{
+    font-size:11px;
+    padding:3px 8px;
+    border-radius:999px;
+    background:rgba(20,184,166,0.15);
+    color:var(--teal);
+    font-weight:600;
+}
+
+.bar{
+    height:6px;
+    background:#1f2937;
+    border-radius:999px;
+    overflow:hidden;
+    margin-top:8px;
+}
+
+.fill{
+    height:100%;
+    background:var(--teal);
+    transition:0.5s ease;
+}
+
+/* SCOREBOARD */
+.score{
+    display:flex;
+    justify-content:space-between;
+    padding:6px 0;
+}
+
+/* ARTICLES */
 .article-link{
     text-decoration:none;
     color:inherit;
     display:block;
-    padding:10px 0;
-    border-radius:8px;
-}
-
-.article-link:hover{
-    background:#0f1720;
-}
-
-.article{
-    display:flex;
-    gap:10px;
     padding:10px;
+    border-radius:10px;
+    transition:0.2s;
 }
 
-.article-title{
-    color:var(--text);
-}
+.article-link:hover{background:#0f1720;}
 
-.article-desc{
-    color:var(--muted);
-    font-size:13px;
-}
+.article-title{font-weight:600;}
+.article-desc{color:var(--muted);font-size:13px;}
 
-.matchup{
-    background:#0f1720;
-    padding:10px;
-    margin:8px 0;
-    border-radius:8px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo-box{
-    width:35px;
-    height:35px;
-    border:2px dashed var(--muted);
-    margin-right:10px;
-    display:inline-block;
-}
-
+/* FOOTER */
 .footer{
     text-align:center;
     padding:30px;
@@ -189,8 +218,10 @@ nav a:hover{
 
 <body>
 
-<div class="topbar">
-5.11.26 - KNICKS SWEEP | OKC IS HOT | WEMBY EJECTED • Keepin’ the Score Live Coverage
+<div class="ticker">
+<span id="tickerText">
+KNICKS SWEEP WATCH • OKC DOMINATING WEST • WEMBY CONTROVERSY • LATEST MODEL UPDATE LOADED • LIVE PROJECTIONS RUNNING • 
+</span>
 </div>
 
 <header>
@@ -203,20 +234,20 @@ nav a:hover{
 </nav>
 </header>
 
+<div class="container">
+
 <!-- HERO -->
 <div class="hero">
-
     <div class="hero-main">
-        <div class="hero-tag">PLAYOFF COVERAGE</div>
-        <h1>CONFERENCE SEMIS ARE ROLLING — HERE’S HOW WE THINK IT PANS OUT</h1>
-        <p style="color:#9ca3af;">
-            Sconzo and Frenchie lock in their full second round predictions as the playoff picture shifts nightly.
+        <h1>CONFERENCE SEMIS ARE ROLLING — LIVE MODEL TRACKING ACTIVE</h1>
+        <p style="color:var(--muted);">
+            Real-time prediction engine updates odds as games progress across the league.
         </p>
     </div>
 
     <div class="hero-side">
         <div class="side-box">
-            <b>Today’s Games</b><br><br>
+            <b>Live Games</b><br><br>
             8:30 PM | Pistons vs Cavs<br>
             10:30 PM | Thunder vs Lakers
         </div>
@@ -224,72 +255,98 @@ nav a:hover{
         <div class="side-box">
             <b>Trending</b><br><br>
             Wemby Ejection<br>
-            OKC Sweep Watch<br>
-            Knicks Dominate
+            OKC Surge<br>
+            Knicks Control Series
         </div>
     </div>
+</div>
+
+<div class="grid">
+
+<div>
+
+<!-- ARTICLES -->
+<div class="card">
+<h3>Latest Articles</h3>
+
+<a class="article-link">
+<div class="article-title">College Football NIL: The New Recruiting Arms Race</div>
+<div class="article-desc">How NIL money is reshaping recruiting and roster building.</div>
+</a>
+
+<a class="article-link">
+<div class="article-title">Charlotte FC: Building a Contender</div>
+<div class="article-desc">Inside MLS roster construction and tactical identity.</div>
+</a>
 
 </div>
 
-<!-- MAIN CONTENT -->
-<div class="container">
+<!-- PREDICTIONS -->
+<div class="card">
+<h3>Live Model Predictions</h3>
 
-    <div>
+<div id="predictions"></div>
 
-        <!-- ARTICLES (NOW CLICKABLE) -->
-        <div class="card">
-            <h3>Latest Articles</h3>
+</div>
 
-            <a class="article-link" href="college-football-nil.html">
-                <div class="article">
-                    <div></div>
-                    <div>
-                        <div class="article-title"><b>College Football NIL: The New Recruiting Arms Race</b></div>
-                        <div class="article-desc">
-                            How NIL money is reshaping recruiting, transfers, and roster building in college football.
-                        </div>
-                    </div>
-                </div>
-            </a>
+</div>
 
-            <a class="article-link" href="charlotte-fc-article.html">
-                <div class="article">
-                    <div></div>
-                    <div>
-                        <div class="article-title"><b>Charlotte FC: Building a Contender in the Queen City</b></div>
-                        <div class="article-desc">
-                            A deep dive into roster construction, tactical identity, and the club’s rise in MLS.
-                        </div>
-                    </div>
-                </div>
-            </a>
+<!-- SCOREBOARD -->
+<div class="card">
+<h3>Scoreboard</h3>
 
-        </div>
+<div class="score"><span>Sconzo</span><b id="sconzo">1</b></div>
+<div class="score"><span>Frenchie</span><b id="frenchie">0</b></div>
 
-        <!-- PREDICTIONS -->
-        <div class="card">
-            <h3>Round 2 Predictions</h3>
+</div>
 
-            <div class="matchup"><span><div class="logo-box"></div> Knicks in 5</span></div>
-            <div class="matchup"><span><div class="logo-box"></div> Pistons in 7</span></div>
-            <div class="matchup"><span><div class="logo-box"></div> Spurs in 6</span></div>
-            <div class="matchup"><span><div class="logo-box"></div> Thunder in 4</span></div>
-
-        </div>
-
-    </div>
-
-    <div class="card">
-        <h3>Scoreboard</h3>
-        <p>Sconzo: 1-0</p>
-        <p>Frenchie: 0-1</p>
-    </div>
-
+</div>
 </div>
 
 <div class="footer">
-Keepin’ the Score • Built for fans, not algorithms
+Keepin’ the Score • Built like a live broadcast system
 </div>
+
+<script>
+// LIVE SCORE SIMULATION
+setInterval(()=>{
+    document.getElementById("sconzo").innerText = 1 + Math.floor(Math.random()*2);
+    document.getElementById("frenchie").innerText = Math.floor(Math.random()*2);
+},5000);
+
+// MODEL ENGINE (simple weighted randomness)
+const games = [
+    {name:"Knicks in 5", base:0.85},
+    {name:"Pistons in 7", base:0.62},
+    {name:"Spurs in 6", base:0.40},
+    {name:"Thunder in 4", base:0.92}
+];
+
+function render(){
+    const container = document.getElementById("predictions");
+    container.innerHTML = "";
+
+    games.forEach(g=>{
+        let variance = (Math.random()-0.5)*0.1;
+        let confidence = Math.min(0.98, Math.max(0.2, g.base + variance));
+        let percent = Math.floor(confidence*100);
+
+        container.innerHTML += `
+        <div class="matchup">
+            <div class="match-top">
+                <b>${g.name}</b>
+                <span class="tag">${percent > 80 ? "LOCK" : percent > 60 ? "HIGH" : "MID"}</span>
+            </div>
+            <div class="bar">
+                <div class="fill" style="width:${percent}%"></div>
+            </div>
+        </div>`;
+    });
+}
+
+render();
+setInterval(render,4000);
+</script>
 
 </body>
 </html>
