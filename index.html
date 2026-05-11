@@ -1,35 +1,137 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Keepin' The Score</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Keepin' the Score</title>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #0b0f14;
+      color: #ffffff;
+    }
+
+    header {
+      background: #111827;
+      padding: 20px;
+      text-align: center;
+      border-bottom: 2px solid #1f2937;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 28px;
+      letter-spacing: 1px;
+    }
+
+    header p {
+      margin: 5px 0 0;
+      color: #9ca3af;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 15px;
+      background: #0f172a;
+      border-bottom: 1px solid #1f2937;
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      padding: 8px 14px;
+      border-radius: 6px;
+      background: #1f2937;
+      transition: 0.2s;
+    }
+
+    nav a:hover {
+      background: #374151;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #111827;
+      border: 1px solid #1f2937;
+      padding: 20px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .card h2 {
+      margin-top: 0;
+    }
+
+    .button {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 10px 14px;
+      background: #2563eb;
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+
+    .button:hover {
+      background: #1d4ed8;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      color: #6b7280;
+      border-top: 1px solid #1f2937;
+      margin-top: 40px;
+    }
+  </style>
 </head>
+
 <body>
-<div id="nav"></div>
 
-<header class="hero">
-<h1>Keepin' The Score</h1>
-<p>Your home for predictions, opinions, and sports coverage.</p>
-</header>
+  <header>
+    <h1>Keepin' the Score</h1>
+    <p>Sports takes, predictions, and opinionated coverage</p>
+  </header>
 
-<section class="section">
-<h2>Latest Articles</h2>
-<ul>
-<li><a href="articles/sample-article.html">Sample Article</a></li>
-</ul>
-</section>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="kts-sweepwatch.html">Sweepwatch</a>
+  </nav>
 
-<section class="section">
-<h2>Predictions</h2>
-<ul>
-<li><a href="predictions/sample-prediction.html">Sample Prediction</a></li>
-</ul>
-</section>
+  <div class="container">
 
-<div id="footer"></div>
-<script src="components.js"></script>
-<script src="script.js"></script>
+    <div class="card">
+      <h2>NBA Playoff Predictions</h2>
+      <p>Side-by-side breakdown of Sconzo vs Frenchie second-round picks.</p>
+      <a class="button" href="kts-sweepwatch.html">View Predictions</a>
+    </div>
+
+    <div class="card">
+      <h2>Articles</h2>
+      <p>Opinion pieces, breakdowns, and reactions from around the league.</p>
+      <a class="button" href="#">Coming Soon</a>
+    </div>
+
+    <div class="card">
+      <h2>Polls & Community Takes</h2>
+      <p>Fan voting, debates, and interactive posts.</p>
+      <a class="button" href="#">Coming Soon</a>
+    </div>
+
+  </div>
+
+  <footer>
+    © Keepin' the Score — Built for fans, not algorithms.
+  </footer>
+
 </body>
 </html>
