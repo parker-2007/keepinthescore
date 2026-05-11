@@ -244,11 +244,79 @@ nav a:hover{
 <span style="left:95%;animation-duration:33s;">🏈</span>
 </div>
 
-<!-- LIVE TICKER -->
+/* ================= LIVE NETWORK BAR ================= */
+
+.topbar{
+ background:var(--mint);
+ color:#000;
+ display:flex;
+ align-items:center;
+ overflow:hidden;
+ border-bottom:1px solid rgba(0,0,0,.2);
+}
+
+/* LIVE DOT */
+
+.live-flag{
+ background:#000;
+ color:var(--mint);
+ font-weight:700;
+ padding:6px 12px;
+ letter-spacing:1px;
+ font-size:12px;
+ display:flex;
+ align-items:center;
+ gap:6px;
+}
+
+.live-dot{
+ width:7px;
+ height:7px;
+ background:#00ff84;
+ border-radius:50%;
+ animation:pulse 1.5s infinite;
+}
+
+@keyframes pulse{
+ 0%{opacity:.4; transform:scale(.9);}
+ 50%{opacity:1; transform:scale(1.2);}
+ 100%{opacity:.4; transform:scale(.9);}
+}
+
+/* SCROLLING NEWS */
+
+.ticker-wrap{
+ overflow:hidden;
+ white-space:nowrap;
+ flex:1;
+}
+
+.ticker{
+ display:inline-block;
+ padding:6px 0;
+ font-weight:600;
+ animation:tickerMove 30s linear infinite;
+}
+
+@keyframes tickerMove{
+ from{transform:translateX(0);}
+ to{transform:translateX(-50%);}
+}
+
 <div class="topbar">
-<div class="ticker">
-5.11.26 — KNICKS SWEEP WATCH • OKC HEATING UP • WEMBY EJECTED • PLAYOFF CHAOS CONTINUES • KEEPIN' THE SCORE LIVE COVERAGE
+
+<div class="live-flag">
+<div class="live-dot"></div>
+LIVE
 </div>
+
+<div class="ticker-wrap">
+<div class="ticker">
+5.11.26 — KNICKS SWEEP WATCH • OKC HEATING UP • WEMBY EJECTED • PLAYOFF CHAOS CONTINUES • KEEPIN' THE SCORE LIVE COVERAGE • 
+5.11.26 — KNICKS SWEEP WATCH • OKC HEATING UP • WEMBY EJECTED • PLAYOFF CHAOS CONTINUES • KEEPIN' THE SCORE LIVE COVERAGE •
+</div>
+</div>
+
 </div>
 
 <header>
