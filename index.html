@@ -12,9 +12,9 @@
 :root{
  --mint:#b1ffcd;
  --dark:#2b2b2b;
- --panel:#323232;
- --card:#3a3a3a;
- --text:#fff;
+ --panel:#333;
+ --card:#3b3b3b;
+ --text:#ffffff;
  --muted:#bdbdbd;
 }
 
@@ -26,21 +26,26 @@ body{
  overflow-x:hidden;
 }
 
-/* ================= SPORTS BACKGROUND ================= */
+/* ================= SUBTLE SPORTS BACKGROUND ================= */
 
-body::before{
- content:"⚾ 🏈 🏀 ⚽ 🏒 🥊 ⛳";
+.sports-bg{
  position:fixed;
- font-size:90px;
- opacity:.04;
- white-space:nowrap;
- animation:sportsMove 40s linear infinite;
+ inset:0;
  pointer-events:none;
+ overflow:hidden;
+ z-index:-1;
 }
 
-@keyframes sportsMove{
- from{transform:translateX(-30%);}
- to{transform:translateX(30%);}
+.sports-bg span{
+ position:absolute;
+ font-size:18px;
+ opacity:.035;
+ animation:floatSports linear infinite;
+}
+
+@keyframes floatSports{
+ from{transform:translateY(120vh) rotate(0deg);}
+ to{transform:translateY(-20vh) rotate(360deg);}
 }
 
 /* ================= LIVE TICKER ================= */
@@ -79,6 +84,11 @@ header{
  font-size:38px;
  letter-spacing:2px;
  color:var(--mint);
+ text-transform:uppercase;
+ text-shadow:
+ 0 0 6px rgba(177,255,205,.6),
+ 0 0 14px rgba(177,255,205,.35),
+ 0 0 28px rgba(177,255,205,.15);
 }
 
 nav a{
@@ -122,8 +132,6 @@ nav a:hover{
  letter-spacing:2px;
 }
 
-/* SIDE BOXES */
-
 .hero-side{
  display:flex;
  flex-direction:column;
@@ -163,6 +171,7 @@ nav a:hover{
  color:inherit;
  border-radius:10px;
  transition:.25s;
+ margin-bottom:10px;
 }
 
 .article-link:hover{
@@ -221,7 +230,21 @@ nav a:hover{
 
 <body>
 
-<!-- LIVE MOVING TICKER -->
+<!-- SUBTLE SPORTS BACKGROUND -->
+<div class="sports-bg">
+<span style="left:5%;animation-duration:32s;">⚾</span>
+<span style="left:15%;animation-duration:28s;">🏀</span>
+<span style="left:25%;animation-duration:40s;">🏈</span>
+<span style="left:35%;animation-duration:36s;">⚽</span>
+<span style="left:45%;animation-duration:30s;">🏒</span>
+<span style="left:55%;animation-duration:42s;">🥊</span>
+<span style="left:65%;animation-duration:34s;">⛳</span>
+<span style="left:75%;animation-duration:38s;">🏀</span>
+<span style="left:85%;animation-duration:29s;">⚾</span>
+<span style="left:95%;animation-duration:33s;">🏈</span>
+</div>
+
+<!-- LIVE TICKER -->
 <div class="topbar">
 <div class="ticker">
 5.11.26 — KNICKS SWEEP WATCH • OKC HEATING UP • WEMBY EJECTED • PLAYOFF CHAOS CONTINUES • KEEPIN' THE SCORE LIVE COVERAGE
@@ -257,15 +280,12 @@ Sconzo and Frenchie lock in second-round predictions as momentum shifts nightly.
 10:30 PM — Thunder vs Lakers
 </div>
 
-<!-- LIVE ODDS RESTORED -->
 <div class="side-box">
 <b>Live Odds</b>
-
 <div class="odds"><span>Knicks</span><span>-180</span></div>
 <div class="odds"><span>Cavs</span><span>+150</span></div>
 <div class="odds"><span>Thunder</span><span>-210</span></div>
 <div class="odds"><span>Lakers</span><span>+175</span></div>
-
 </div>
 
 </div>
@@ -293,12 +313,10 @@ Sconzo and Frenchie lock in second-round predictions as momentum shifts nightly.
 
 <div class="card">
 <h3>Round 2 Predictions</h3>
-
 <div class="matchup">Knicks in 5</div>
 <div class="matchup">Pistons in 7</div>
 <div class="matchup">Spurs in 6</div>
 <div class="matchup">Thunder in 4</div>
-
 </div>
 
 </div>
