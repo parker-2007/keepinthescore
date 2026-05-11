@@ -1,7 +1,8 @@
 {
-"name": "keepin-the-score",
-"version": "1.0.0",
-"scripts": {
-"start": "npx serve ."
-}
+  "name": "keepin-the-score",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "npx serve -s . -l $PORT"
+  }
 }
