@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sweep Watch — Keepin' the Score</title>
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Condensed:wght@400;600;700;800;900&family=Barlow:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #222222;
+      --mint: #5DEDB6;
+      --okc-orange: #EF3B24;
+      --okc-blue: #007AC1;
+      --lal-purple: #552583;
+      --lal-gold: #FDB927;
+      --white: #F0F0F0;
+      --offwhite: #C8C8C8;
+      --gray: #666;
+      --dark: #1a1a1a;
+    }
+
+    body {
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: 'Barlow Condensed', sans-serif;
+    }
+
+    .card {
+      width: 680px;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ── NOISE TEXTURE OVERLAY ── */
+    .card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 10;
+      opacity: 0.35;
+    }
+
+    /* ── TOP BAR ── */
+    .top-bar {
+      background: var(--okc-orange);
+      padding: 0.45rem 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .top-bar .kts-label {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.7rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--dark);
+    }
+
+    .top-bar .live-badge {
+      background: var(--dark);
+      color: var(--okc-orange);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.6rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      padding: 0.2rem 0.6rem;
+    }
+
+    /* ── HERO SECTION ── */
+    .hero {
+      padding: 2rem 1.5rem 1.5rem;
+      position: relative;
+    }
+
+    /* diagonal accent */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 220px;
+      height: 100%;
+      background: linear-gradient(135deg, transparent 40%, rgba(239,59,36,0.06) 100%);
+      pointer-events: none;
+    }
+
+    .sweep-eyebrow {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 700;
+      font-size: 0.65rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 0.4rem;
+    }
+
+    .sweep-headline {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 5.8rem;
+      line-height: 0.88;
+      color: var(--white);
+      letter-spacing: 0.02em;
+    }
+
+    .sweep-headline .watch {
+      color: var(--okc-orange);
+      display: block;
+    }
+
+    .sweep-sub {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 600;
+      font-size: 0.85rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--offwhite);
+      margin-top: 0.75rem;
+      border-left: 3px solid var(--okc-orange);
+      padding-left: 0.6rem;
+    }
+
+    /* ── SERIES SCOREBOARD ── */
+    .scoreboard {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      margin: 1.5rem 0 0;
+      border-top: 1px solid #2f2f2f;
+      border-bottom: 1px solid #2f2f2f;
+    }
+
+    .team-side {
+      padding: 1.2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .team-side.okc {
+      background: rgba(0, 122, 193, 0.07);
+      border-right: 1px solid #2f2f2f;
+    }
+
+    .team-side.lal {
+      background: rgba(85, 37, 131, 0.07);
+      border-left: 1px solid #2f2f2f;
+      align-items: flex-end;
+      text-align: right;
+    }
+
+    .team-conf {
+      font-size: 0.55rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-bottom: 0.5rem;
+    }
+
+    .logo-slot {
+      width: 64px;
+      height: 64px;
+      border: 1.5px dashed #3a3a3a;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 0.75rem;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .lal .logo-slot {
+      margin-left: auto;
+    }
+
+    .logo-slot span {
+      font-size: 0.45rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: #3a3a3a;
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .team-name {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.2rem;
+      letter-spacing: 0.04em;
+      line-height: 1;
+    }
+
+    .okc .team-name { color: var(--okc-blue); }
+    .lal .team-name { color: var(--lal-gold); }
+
+    .team-record {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-top: 0.25rem;
+    }
+
+    .okc .team-record { color: var(--mint); }
+    .lal .team-record { color: #555; }
+
+    .team-status {
+      font-size: 0.58rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-top: 0.5rem;
+      font-weight: 700;
+    }
+
+    .okc .team-status { color: var(--okc-orange); }
+    .lal .team-status { color: var(--lal-purple); opacity: 0.8; }
+
+    /* center score */
+    .score-center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 1rem 1.25rem;
+      gap: 0.15rem;
+    }
+
+    .score-label {
+      font-size: 0.5rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gray);
+    }
+
+    .score-big {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4.5rem;
+      line-height: 1;
+      color: var(--okc-orange);
+      letter-spacing: 0.02em;
+    }
+
+    .score-dash {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.8rem;
+      color: #333;
+      line-height: 1;
+    }
+
+    /* ── TONIGHT BOX ── */
+    .tonight-strip {
+      background: var(--okc-orange);
+      padding: 0.65rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .tonight-strip .tn-label {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      letter-spacing: 0.06em;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    .tonight-strip .tn-detail {
+      font-size: 0.65rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(0,0,0,0.6);
+      font-weight: 700;
+    }
+
+    .tonight-strip .tn-right {
+      text-align: right;
+    }
+
+    .tonight-strip .tn-time {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--dark);
+      line-height: 1;
+    }
+
+    /* ── STATS STRIP ── */
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .stat-block {
+      padding: 1rem 1.2rem;
+      border-right: 1px solid #2a2a2a;
+    }
+
+    .stat-block:last-child { border-right: none; }
+
+    .stat-num {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.4rem;
+      line-height: 1;
+      color: var(--white);
+    }
+
+    .stat-num .accent { color: var(--mint); }
+    .stat-num .orange { color: var(--okc-orange); }
+
+    .stat-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin-top: 0.15rem;
+      line-height: 1.4;
+    }
+
+    /* ── NARRATIVE SECTION ── */
+    .narrative {
+      padding: 1.1rem 1.5rem;
+      border-top: 1px solid #2a2a2a;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+
+    .narrative-block .nb-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.6rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--okc-orange);
+      margin-bottom: 0.3rem;
+    }
+
+    .narrative-block .nb-text {
+      font-family: 'Barlow', sans-serif;
+      font-size: 0.75rem;
+      color: var(--offwhite);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .narrative-block .nb-text strong {
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    /* ── BOTTOM QUESTION ── */
+    .question-bar {
+      background: #1a1a1a;
+      border-top: 2px solid var(--mint);
+      padding: 0.9rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+    }
+
+    .question-bar .q-text {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.55rem;
+      letter-spacing: 0.04em;
+      color: var(--white);
+      line-height: 1;
+    }
+
+    .question-bar .q-text span {
+      color: var(--lal-gold);
+    }
+
+    .vote-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-shrink: 0;
+    }
+
+    .pill {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.4rem 0.85rem;
+    }
+
+    .pill.yes {
+      background: var(--okc-orange);
+      color: var(--dark);
+    }
+
+    .pill.no {
+      border: 1.5px solid var(--lal-gold);
+      color: var(--lal-gold);
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      padding: 0.6rem 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--dark);
+      border-top: 1px solid #2a2a2a;
+    }
+
+    .footer .brand {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-weight: 800;
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+
+    .footer .handle {
+      font-size: 0.55rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: #444;
+    }
+  </style>
+</head>
+<body>
+
+<div class="card">
+
+  <!-- TOP BAR -->
+  <div class="top-bar">
+    <div class="kts-label">Keepin' The Score &nbsp;·&nbsp; NBA Playoffs 2026</div>
+    <div class="live-badge">⚡ Tonight</div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="sweep-eyebrow">Western Conference Semifinals &nbsp;·&nbsp; Game 4</div>
+    <div class="sweep-headline">
+      SWEEP
+      <span class="watch">WATCH.</span>
+    </div>
+    <div class="sweep-sub">OKC hasn't lost a single game this postseason. The Lakers need a miracle tonight.</div>
+  </div>
+
+  <!-- SCOREBOARD -->
+  <div class="scoreboard">
+
+    <div class="team-side okc">
+      <div class="team-conf">Western Conference · #1 Seed</div>
+      <div class="logo-slot"><span>OKC<br>Logo</span></div>
+      <div class="team-name">Thunder</div>
+      <div class="team-record">7-0 This Postseason</div>
+      <div class="team-status">↑ Closing Out</div>
+    </div>
+
+    <div class="score-center">
+      <div class="score-label">Series</div>
+      <div class="score-big">3</div>
+      <div class="score-dash">—</div>
+      <div class="score-big" style="color: #3a3a3a;">0</div>
+      <div class="score-label" style="margin-top:0.15rem;">OKC leads</div>
+    </div>
+
+    <div class="team-side lal">
+      <div class="team-conf">Western Conference · #4 Seed</div>
+      <div class="logo-slot"><span>LAL<br>Logo</span></div>
+      <div class="team-name">Lakers</div>
+      <div class="team-record">Season on the line</div>
+      <div class="team-status">↓ Survival Mode</div>
+    </div>
+
+  </div>
+
+  <!-- TONIGHT STRIP -->
+  <div class="tonight-strip">
+    <div>
+      <div class="tn-label">Game 4 — Tonight</div>
+      <div class="tn-detail">@ Los Angeles · Prime Video</div>
+    </div>
+    <div class="tn-right">
+      <div class="tn-time">10:30 PM ET</div>
+      <div class="tn-detail">Win or go home for L.A.</div>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <div class="stats-row">
+    <div class="stat-block">
+      <div class="stat-num"><span class="accent">7</span>-0</div>
+      <div class="stat-label">OKC Playoff<br>Record</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num"><span class="orange">+38</span></div>
+      <div class="stat-label">OKC's Avg.<br>Point Diff.</div>
+    </div>
+    <div class="stat-block">
+      <div class="stat-num" style="font-size:1.5rem; padding-top: 0.4rem; color: var(--offwhite);">
+        <!-- Leave blank for user to add Mitchell stat or note -->
+        <span style="font-family:'Barlow Condensed'; font-weight:700; font-size:0.7rem; color:#555; letter-spacing:0.1em; text-transform:uppercase; display:block; margin-top:0.3rem;">Add Stat Here</span>
+      </div>
+      <div class="stat-label">Your pick<br>for a stat</div>
+    </div>
+  </div>
+
+  <!-- NARRATIVE -->
+  <div class="narrative">
+    <div class="narrative-block">
+      <div class="nb-title">⚡ The Thunder's Run</div>
+      <div class="nb-text">OKC is playing the most dominant playoff basketball we've seen in years. <strong>Ajay Mitchell stepped up huge</strong> with Jalen Williams sidelined, and the defending champs look like they're not just trying to win — they're trying to embarrass people.</div>
+    </div>
+    <div class="narrative-block">
+      <div class="nb-title">🟣 Lakers' Last Stand</div>
+      <div class="nb-text">LA has to win <strong>four straight against the best team in basketball</strong> to advance. No team has ever come back from 3-0 in NBA history. The Staples crowd will be loud tonight — but can Laker nation actually believe?</div>
+    </div>
+  </div>
+
+  <!-- QUESTION BAR -->
+  <div class="question-bar">
+    <div class="q-text">Do the <span>Lakers</span> survive tonight?</div>
+    <div class="vote-pills">
+      <div class="pill yes">Thunder Close It</div>
+      <div class="pill no">Lakers Fight Back</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <div class="brand">Keepin' The Score</div>
+    <div class="handle">@keepinscoreHQ</div>
+  </div>
+
+</div>
+
+</body>
+</html>
