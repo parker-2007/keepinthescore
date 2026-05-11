@@ -2,335 +2,294 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Keepin' the Score</title>
 
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Barlow+Semi+Condensed:wght@400;500;600&display=swap" rel="stylesheet">
+
 <style>
-/* =========================
-   GLOBAL THEME (KTS BRAND)
-========================= */
-:root {
-  --bg: #0b0f14;
-  --panel: #111827;
-  --panel-2: #0f172a;
-  --border: #1f2937;
-  --text: #e5e7eb;
-  --muted: #9ca3af;
-  --accent: #38e0b2; /* TEAL GREEN BRAND */
-  --accent-2: #2dd4bf;
+:root{
+    --bg:#0b0f14;
+    --panel:#111827;
+    --card:#1f2937;
+    --teal:#14b8a6;
+    --text:#e5e7eb;
+    --muted:#9ca3af;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Barlow Semi Condensed', sans-serif;
+    font-weight:500;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
+p, span, div, a{
+    font-family:'Barlow Semi Condensed', sans-serif;
+    font-weight:500;
 }
 
-/* =========================
-   NAVBAR
-========================= */
-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 40px;
-  background: rgba(10, 14, 20, 0.9);
-  border-bottom: 1px solid var(--border);
-  position: sticky;
-  top: 0;
-  backdrop-filter: blur(10px);
+b, strong{
+    font-weight:600;
 }
 
-.logo {
-  font-weight: 800;
-  letter-spacing: 2px;
-  font-size: 18px;
+h1, h2, h3, .logo, .hero-tag{
+    font-family:'Bebas Neue', sans-serif;
+    text-transform:uppercase;
+    letter-spacing:2px;
 }
 
-.logo span {
-  color: var(--accent);
+.topbar{
+    background:var(--teal);
+    color:#000;
+    font-weight:bold;
+    padding:6px 12px;
+    font-size:12px;
+    letter-spacing:1px;
 }
 
-.nav-links {
-  display: flex;
-  gap: 20px;
+header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+    background:#0f1720;
+    border-bottom:1px solid #1f2937;
 }
 
-.nav-links a {
-  color: var(--muted);
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 1px;
+.logo{
+    font-size:34px;
+    letter-spacing:3px;
 }
 
-.nav-links a:hover {
-  color: var(--accent);
+nav a{
+    color:var(--muted);
+    margin:0 10px;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:14px;
 }
 
-/* =========================
-   HERO SECTION
-========================= */
-.hero {
-  padding: 70px 40px;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 40px;
-  border-bottom: 1px solid var(--border);
+nav a:hover{
+    color:var(--teal);
 }
 
-.hero h1 {
-  font-size: 54px;
-  line-height: 1;
-  letter-spacing: 2px;
+.hero{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    padding:20px;
 }
 
-.hero h1 span {
-  color: var(--accent);
+.hero-main{
+    background:linear-gradient(135deg,#111827,#0b0f14);
+    padding:25px;
+    border-radius:12px;
+    border:1px solid #1f2937;
 }
 
-.hero p {
-  margin-top: 15px;
-  color: var(--muted);
-  max-width: 500px;
+.hero-main h1{
+    font-size:48px;
+    margin:10px 0;
+    line-height:0.95;
 }
 
-.button {
-  display: inline-block;
-  margin-top: 25px;
-  padding: 12px 18px;
-  background: var(--accent);
-  color: #000;
-  font-weight: bold;
-  text-decoration: none;
-  border-radius: 6px;
+.hero-tag{
+    color:var(--teal);
+    font-size:12px;
 }
 
-/* =========================
-   FEATURE GRID
-========================= */
-.grid {
-  display: grid;
-  grid-template-columns: 1.2fr 1fr 1fr;
-  gap: 20px;
-  padding: 40px;
+.hero-side{
+    display:flex;
+    flex-direction:column;
+    gap:10px;
 }
 
-.card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: 12px;
-  transition: 0.2s;
+.side-box{
+    background:var(--panel);
+    padding:15px;
+    border-radius:10px;
+    border:1px solid #1f2937;
 }
 
-.card:hover {
-  transform: translateY(-3px);
-  border-color: var(--accent);
+.container{
+    display:grid;
+    grid-template-columns:2fr 1fr;
+    gap:20px;
+    padding:20px;
 }
 
-.card h3 {
-  margin-bottom: 10px;
-  letter-spacing: 1px;
+.card{
+    background:var(--card);
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    border:1px solid #1f2937;
 }
 
-.tag {
-  font-size: 11px;
-  color: var(--accent);
-  letter-spacing: 2px;
-  margin-bottom: 10px;
+.card h3{
+    margin-top:0;
+    color:var(--teal);
 }
 
-/* =========================
-   PREDICTIONS SECTION
-========================= */
-.predictions {
-  padding: 0 40px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 20px;
+/* ARTICLE LINKS */
+.article-link{
+    text-decoration:none;
+    color:inherit;
+    display:block;
+    padding:10px 0;
+    border-radius:8px;
 }
 
-.team-box {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 20px;
+.article-link:hover{
+    background:#0f1720;
 }
 
-.team-title {
-  font-size: 14px;
-  color: var(--muted);
-  letter-spacing: 1px;
+.article{
+    display:flex;
+    gap:10px;
+    padding:10px;
 }
 
-.team-name {
-  font-size: 28px;
-  margin-top: 10px;
+.article-title{
+    color:var(--text);
 }
 
-.win-tag {
-  margin-top: 10px;
-  display: inline-block;
-  padding: 5px 10px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  font-size: 12px;
-  border-radius: 6px;
+.article-desc{
+    color:var(--muted);
+    font-size:13px;
 }
 
-/* =========================
-   LOWER SECTIONS
-========================= */
-.bottom {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 20px;
-  padding: 40px;
+.matchup{
+    background:#0f1720;
+    padding:10px;
+    margin:8px 0;
+    border-radius:8px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
 }
 
-.article {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: 12px;
+.logo-box{
+    width:35px;
+    height:35px;
+    border:2px dashed var(--muted);
+    margin-right:10px;
+    display:inline-block;
 }
 
-.poll {
-  background: var(--panel-2);
-  border: 1px solid var(--border);
-  padding: 20px;
-  border-radius: 12px;
+.footer{
+    text-align:center;
+    padding:30px;
+    color:var(--muted);
+    font-size:12px;
 }
-
-.poll button {
-  width: 100%;
-  margin-top: 10px;
-  padding: 10px;
-  background: transparent;
-  border: 1px solid var(--border);
-  color: white;
-  cursor: pointer;
-}
-
-.poll button:hover {
-  border-color: var(--accent);
-  color: var(--accent);
-}
-
-/* =========================
-   FOOTER
-========================= */
-footer {
-  padding: 30px;
-  text-align: center;
-  color: var(--muted);
-  border-top: 1px solid var(--border);
-  font-size: 12px;
-}
-
 </style>
 </head>
 
 <body>
 
+<div class="topbar">
+5.11.26 - KNICKS SWEEP | OKC IS HOT | WEMBY EJECTED • Keepin’ the Score Live Coverage
+</div>
+
+<header>
+<div class="logo">KEEPIN’ THE SCORE</div>
 <nav>
-  <div class="logo">KEEPIN' <span>THE SCORE</span></div>
-  <div class="nav-links">
-    <a href="#">HOME</a>
-    <a href="kts-sweepwatch.html">PREDICTIONS</a>
-    <a href="#">ARTICLES</a>
-    <a href="#">POLLS</a>
-  </div>
+    <a href="#">Home</a>
+    <a href="#">Predictions</a>
+    <a href="#">Articles</a>
+    <a href="#">Polls</a>
 </nav>
+</header>
 
 <!-- HERO -->
-<section class="hero">
-  <div>
-    <h1>TAKES.<br>PREDICTIONS.<br><span>SCORE.</span></h1>
-    <p>Real opinions. Real debates. All sports. All the time.</p>
-    <a class="button" href="kts-sweepwatch.html">VIEW LATEST PREDICTIONS</a>
-  </div>
+<div class="hero">
 
-  <div class="card">
-    <div class="tag">FEATURED POST</div>
-    <h3>NBA PLAYOFFS: SECOND ROUND</h3>
-    <p style="color:#9ca3af;">
-      Sconzo vs Frenchie prediction breakdown — updated playoff outcomes and game-by-game analysis.
-    </p>
-  </div>
-</section>
+    <div class="hero-main">
+        <div class="hero-tag">PLAYOFF COVERAGE</div>
+        <h1>CONFERENCE SEMIS ARE ROLLING — HERE’S HOW WE THINK IT PANS OUT</h1>
+        <p style="color:#9ca3af;">
+            Sconzo and Frenchie lock in their full second round predictions as the playoff picture shifts nightly.
+        </p>
+    </div>
 
-<!-- FEATURE GRID -->
-<section class="grid">
+    <div class="hero-side">
+        <div class="side-box">
+            <b>Today’s Games</b><br><br>
+            8:30 PM | Pistons vs Cavs<br>
+            10:30 PM | Thunder vs Lakers
+        </div>
 
-  <div class="card">
-    <div class="tag">NBA</div>
-    <h3>Thunder Dominance Watch</h3>
-    <p style="color:#9ca3af;">OKC undefeated this postseason. Can anyone stop them?</p>
-  </div>
+        <div class="side-box">
+            <b>Trending</b><br><br>
+            Wemby Ejection<br>
+            OKC Sweep Watch<br>
+            Knicks Dominate
+        </div>
+    </div>
 
-  <div class="card">
-    <div class="tag">HOT TAKE</div>
-    <h3>Wemby Ejection Reaction</h3>
-    <p style="color:#9ca3af;">Did one moment change the Spurs series?</p>
-  </div>
+</div>
 
-  <div class="card">
-    <div class="tag">COMING UP</div>
-    <h3>PGA Championship</h3>
-    <p style="color:#9ca3af;">Scheffler, Rory, and Spieth headline the field.</p>
-  </div>
+<!-- MAIN CONTENT -->
+<div class="container">
 
-</section>
+    <div>
 
-<!-- PREDICTIONS -->
-<section class="predictions">
+        <!-- ARTICLES (NOW CLICKABLE) -->
+        <div class="card">
+            <h3>Latest Articles</h3>
 
-  <div class="team-box">
-    <div class="team-title">SCONZO'S PREDICTIONS</div>
-    <div class="team-name">OKC vs LAL</div>
-    <div class="win-tag">OKC IN 4</div>
-    <p style="margin-top:10px; color:#9ca3af;">⬜ LOGO SPACE (drop in image here)</p>
-  </div>
+            <a class="article-link" href="college-football-nil.html">
+                <div class="article">
+                    <div></div>
+                    <div>
+                        <div class="article-title"><b>College Football NIL: The New Recruiting Arms Race</b></div>
+                        <div class="article-desc">
+                            How NIL money is reshaping recruiting, transfers, and roster building in college football.
+                        </div>
+                    </div>
+                </div>
+            </a>
 
-  <div class="team-box">
-    <div class="team-title">FRENCHIE'S PREDICTIONS</div>
-    <div class="team-name">OKC vs LAL</div>
-    <div class="win-tag">OKC IN 5</div>
-    <p style="margin-top:10px; color:#9ca3af;">⬜ LOGO SPACE (drop in image here)</p>
-  </div>
+            <a class="article-link" href="charlotte-fc-article.html">
+                <div class="article">
+                    <div></div>
+                    <div>
+                        <div class="article-title"><b>Charlotte FC: Building a Contender in the Queen City</b></div>
+                        <div class="article-desc">
+                            A deep dive into roster construction, tactical identity, and the club’s rise in MLS.
+                        </div>
+                    </div>
+                </div>
+            </a>
 
-</section>
+        </div>
 
-<!-- BOTTOM -->
-<section class="bottom">
+        <!-- PREDICTIONS -->
+        <div class="card">
+            <h3>Round 2 Predictions</h3>
 
-  <div class="article">
-    <h3>Latest Article</h3>
-    <p style="color:#9ca3af; margin-top:10px;">
-      OKC is playing some of the most dominant playoff basketball in years.
-      This run is starting to feel historic.
-    </p>
-  </div>
+            <div class="matchup"><span><div class="logo-box"></div> Knicks in 5</span></div>
+            <div class="matchup"><span><div class="logo-box"></div> Pistons in 7</span></div>
+            <div class="matchup"><span><div class="logo-box"></div> Spurs in 6</span></div>
+            <div class="matchup"><span><div class="logo-box"></div> Thunder in 4</span></div>
 
-  <div class="poll">
-    <h3>Fan Poll</h3>
-    <p style="color:#9ca3af;">Who wins tonight?</p>
-    <button>Thunder</button>
-    <button>Lakers</button>
-  </div>
+        </div>
 
-</section>
+    </div>
 
-<footer>
-  © KEEPIN' THE SCORE — BUILT FOR FANS, NOT ALGORITHMS.
-</footer>
+    <div class="card">
+        <h3>Scoreboard</h3>
+        <p>Sconzo: 1-0</p>
+        <p>Frenchie: 0-1</p>
+    </div>
+
+</div>
+
+<div class="footer">
+Keepin’ the Score • Built for fans, not algorithms
+</div>
 
 </body>
 </html>
