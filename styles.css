@@ -1,0 +1,21 @@
+body {
+margin:0;
+font-family:Arial, sans-serif;
+background:#222;
+color:#fff;
+}
+.hero {
+text-align:center;
+padding:60px;
+background:#1a1a1a;
+}
+.section {
+padding:40px;
+border-top:1px solid #333;
+}
+a { color:#5DEDB6; text-decoration:none; }
+nav, footer {
+background:#111;
+padding:15px;
+text-align:center;
+}
