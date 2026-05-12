@@ -359,8 +359,12 @@ nav a.active {
   border-color: var(--mint-dim);
   box-shadow: 0 4px 16px rgba(177,255,205,.07);
 }
-.matchup-pick { font-weight: 700; font-size: 15px; }
-.matchup-conf {
+.matchup.correct {
+  border-color: rgba(177,255,205,.35);
+  background: rgba(177,255,205,.06);
+}
+.matchup.correct .matchup-pick { color: var(--mint); }
+.matchup.correct .matchup-conf { color: var(--mint); opacity: .8; }
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -385,7 +389,30 @@ nav a.active {
 }
 .score-record.losing { color: #ff8080; }
 
-/* ================= FOOTER ================= */
+nav a.twitter-link {
+  color: var(--mint);
+  border-color: var(--mint-dim);
+  background: var(--mint-dim);
+  display: inline-flex;
+  align-items: center;
+}
+nav a.twitter-link:hover {
+  background: rgba(177,255,205,.25);
+  border-color: var(--mint);
+}
+.footer-twitter {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  color: var(--mint);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: .5px;
+  opacity: .8;
+  transition: opacity .2s;
+}
+.footer-twitter:hover { opacity: 1; }
 footer {
   text-align: center;
   padding: 28px;
@@ -442,7 +469,7 @@ footer {
   </div>
   <div class="ticker-wrap">
     <div class="ticker">
-      5.12.26 — KNICKS SWEEP WATCH&nbsp;&nbsp;•&nbsp;&nbsp;OKC HEATING UP&nbsp;&nbsp;•&nbsp;&nbsp;WEMBY EJECTED&nbsp;&nbsp;•&nbsp;&nbsp;PLAYOFF CHAOS CONTINUES&nbsp;&nbsp;•&nbsp;&nbsp;PISTONS FORCE GAME 7&nbsp;&nbsp;•&nbsp;&nbsp;KEEPIN' THE SCORE: LIVE COVERAGE&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.12.26 — KNICKS SWEEP WATCH&nbsp;&nbsp;•&nbsp;&nbsp;OKC HEATING UP&nbsp;&nbsp;•&nbsp;&nbsp;WEMBY EJECTED&nbsp;&nbsp;•&nbsp;&nbsp;PLAYOFF CHAOS CONTINUES&nbsp;&nbsp;•&nbsp;&nbsp;PISTONS FORCE GAME 7&nbsp;&nbsp;•&nbsp;&nbsp;KEEPIN' THE SCORE: LIVE COVERAGE&nbsp;&nbsp;•
+      5.12.26 — LEBRON'S LAST GAME?? 👀&nbsp;&nbsp;•&nbsp;&nbsp;OKC SWEEPS LAKERS 4-0&nbsp;&nbsp;•&nbsp;&nbsp;KNICKS SWEEP 76ERS 4-0&nbsp;&nbsp;•&nbsp;&nbsp;PISTONS vs CAVS TIED 2-2&nbsp;&nbsp;•&nbsp;&nbsp;SPURS vs WOLVES TIED 2-2&nbsp;&nbsp;•&nbsp;&nbsp;CONFERENCE SEMIS HEATING UP&nbsp;&nbsp;•&nbsp;&nbsp;KEEPIN' THE SCORE: LIVE COVERAGE&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5.12.26 — LEBRON'S LAST GAME?? 👀&nbsp;&nbsp;•&nbsp;&nbsp;OKC SWEEPS LAKERS 4-0&nbsp;&nbsp;•&nbsp;&nbsp;KNICKS SWEEP 76ERS 4-0&nbsp;&nbsp;•&nbsp;&nbsp;PISTONS vs CAVS TIED 2-2&nbsp;&nbsp;•&nbsp;&nbsp;SPURS vs WOLVES TIED 2-2&nbsp;&nbsp;•&nbsp;&nbsp;CONFERENCE SEMIS HEATING UP&nbsp;&nbsp;•&nbsp;&nbsp;KEEPIN' THE SCORE: LIVE COVERAGE&nbsp;&nbsp;•
     </div>
   </div>
 </div>
@@ -455,6 +482,10 @@ footer {
     <a href="#">Predictions</a>
     <a href="#">Articles</a>
     <a href="#">Polls</a>
+    <a href="https://twitter.com/keepinscorehq" target="_blank" rel="noopener" class="twitter-link">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:5px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+      @keepinscorehq
+    </a>
   </nav>
 </header>
 
@@ -463,8 +494,8 @@ footer {
 
   <div class="hero-main">
     <div class="hero-tag">🔥 Playoff Coverage</div>
-    <h1>Conference Semis Are Rolling</h1>
-    <p>Sconzo and Frenchie lock in second-round predictions as momentum shifts nightly. Who's got the edge?</p>
+    <h1>Knicks & Thunder Roll Into the Next Round</h1>
+    <p>OKC dismantles the Lakers 4-0. New York bounces Philly 4-0. Two sweeps, zero drama — now the real battles begin. Was that LeBron's last game??</p>
   </div>
 
   <div class="hero-side">
@@ -472,32 +503,32 @@ footer {
     <div class="side-box">
       <b>Today's Games</b>
       <div class="game-item">
-        <span class="game-teams">Pistons vs Cavs</span>
-        <span class="game-time">8:30 PM</span>
+        <span class="game-teams">Spurs vs Wolves</span>
+        <span class="game-time">8:00 PM · G5</span>
       </div>
       <div class="game-item">
-        <span class="game-teams">Thunder vs Lakers</span>
-        <span class="game-time">10:30 PM</span>
+        <span class="game-teams">Pistons vs Cavs</span>
+        <span class="game-time">8:00 PM · G5 (Wed)</span>
       </div>
     </div>
 
     <div class="side-box">
       <b>Live Odds</b>
       <div class="odds">
-        <span class="odds-team">Knicks</span>
-        <span class="odds-num fav">-180</span>
+        <span class="odds-team">Spurs</span>
+        <span class="odds-num fav">-178</span>
+      </div>
+      <div class="odds">
+        <span class="odds-team">Wolves</span>
+        <span class="odds-num dog">+214</span>
+      </div>
+      <div class="odds">
+        <span class="odds-team">Pistons</span>
+        <span class="odds-num fav">-140</span>
       </div>
       <div class="odds">
         <span class="odds-team">Cavs</span>
-        <span class="odds-num dog">+150</span>
-      </div>
-      <div class="odds">
-        <span class="odds-team">Thunder</span>
-        <span class="odds-num fav">-210</span>
-      </div>
-      <div class="odds">
-        <span class="odds-team">Lakers</span>
-        <span class="odds-num dog">+175</span>
+        <span class="odds-num dog">+160</span>
       </div>
     </div>
 
@@ -511,6 +542,12 @@ footer {
 
     <div class="card">
       <h3>Latest Articles</h3>
+
+      <a class="article-link" href="knicks-postseason-run.html">
+        <span class="article-tag">NBA Playoffs</span>
+        <b>The Knicks' Historic Postseason Run</b>
+        <span class="article-desc">From the first round to a sweep — breaking down New York's dominant playoff march.</span>
+      </a>
 
       <a class="article-link" href="college-football-nil.html">
         <span class="article-tag">College Football</span>
@@ -527,21 +564,21 @@ footer {
 
     <div class="card">
       <h3>Round 2 Predictions</h3>
-      <div class="matchup">
-        <span class="matchup-pick">Knicks</span>
-        <span class="matchup-conf">in 5</span>
+      <div class="matchup correct">
+        <span class="matchup-pick">✅ Knicks</span>
+        <span class="matchup-conf">Swept PHI 4-0 ✓</span>
+      </div>
+      <div class="matchup correct">
+        <span class="matchup-pick">✅ Thunder</span>
+        <span class="matchup-conf">Swept LAL 4-0 ✓</span>
       </div>
       <div class="matchup">
         <span class="matchup-pick">Pistons</span>
-        <span class="matchup-conf">in 7</span>
+        <span class="matchup-conf">vs Cavs — Tied 2-2</span>
       </div>
       <div class="matchup">
         <span class="matchup-pick">Spurs</span>
-        <span class="matchup-conf">in 6</span>
-      </div>
-      <div class="matchup">
-        <span class="matchup-pick">Thunder</span>
-        <span class="matchup-conf">in 4</span>
+        <span class="matchup-conf">vs Wolves — Tied 2-2</span>
       </div>
     </div>
 
@@ -563,6 +600,11 @@ footer {
 
 <footer>
   Keepin' the Score &nbsp;•&nbsp; Built for fans, not algorithms
+  <br><br>
+  <a href="https://twitter.com/keepinscorehq" target="_blank" rel="noopener" class="twitter-link footer-twitter">
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:6px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+    @keepinscorehq
+  </a>
 </footer>
 
 </body>
