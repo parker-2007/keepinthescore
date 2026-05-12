@@ -102,7 +102,6 @@ body {
   font-weight: 700;
   font-size: 12px;
   letter-spacing: .5px;
-  /* FIX: start from right edge, end fully off left */
   animation: tickerScroll 32s linear infinite;
 }
 @keyframes tickerScroll {
@@ -161,6 +160,18 @@ nav a.active {
   background: var(--mint-dim);
 }
 
+nav a.twitter-link {
+  color: var(--mint);
+  border-color: var(--mint-dim);
+  background: var(--mint-dim);
+  display: inline-flex;
+  align-items: center;
+}
+nav a.twitter-link:hover {
+  background: rgba(177,255,205,.25);
+  border-color: var(--mint);
+}
+
 /* ================= HERO ================= */
 .hero {
   display: grid;
@@ -184,7 +195,6 @@ nav a.active {
   flex-direction: column;
   justify-content: flex-end;
 }
-/* subtle gradient accent in corner */
 .hero-main::before {
   content: '';
   position: absolute;
@@ -243,6 +253,27 @@ nav a.active {
   color: var(--mint);
   margin-bottom: 12px;
 }
+
+.side-box-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+.side-box-header b {
+  margin-bottom: 0;
+}
+.side-box-header a {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  color: var(--mint);
+  text-decoration: none;
+  opacity: .7;
+  text-transform: uppercase;
+  transition: opacity .2s;
+}
+.side-box-header a:hover { opacity: 1; }
 
 .game-item {
   display: flex;
@@ -365,6 +396,8 @@ nav a.active {
 }
 .matchup.correct .matchup-pick { color: var(--mint); }
 .matchup.correct .matchup-conf { color: var(--mint); opacity: .8; }
+.matchup-pick { font-weight: 700; }
+.matchup-conf {
   font-size: 11px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -389,17 +422,6 @@ nav a.active {
 }
 .score-record.losing { color: #ff8080; }
 
-nav a.twitter-link {
-  color: var(--mint);
-  border-color: var(--mint-dim);
-  background: var(--mint-dim);
-  display: inline-flex;
-  align-items: center;
-}
-nav a.twitter-link:hover {
-  background: rgba(177,255,205,.25);
-  border-color: var(--mint);
-}
 .footer-twitter {
   display: inline-flex;
   align-items: center;
@@ -478,10 +500,11 @@ footer {
 <header>
   <div class="logo">Keepin' the Score</div>
   <nav>
-    <a href="#" class="active">Home</a>
+    <a href="index.html" class="active">Home</a>
     <a href="#">Predictions</a>
     <a href="#">Articles</a>
     <a href="#">Polls</a>
+    <a href="odds.html">Odds</a>
     <a href="https://twitter.com/keepinscorehq" target="_blank" rel="noopener" class="twitter-link">
       <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:5px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
       @keepinscorehq
@@ -503,32 +526,37 @@ footer {
     <div class="side-box">
       <b>Today's Games</b>
       <div class="game-item">
-        <span class="game-teams">Spurs vs Wolves</span>
-        <span class="game-time">8:00 PM · G5</span>
+        <span class="game-teams">Wolves @ Spurs</span>
+        <span class="game-time">8:10 PM · G5</span>
       </div>
       <div class="game-item">
-        <span class="game-teams">Pistons vs Cavs</span>
-        <span class="game-time">8:00 PM · G5 (Wed)</span>
+        <span class="game-teams">Cavs @ Pistons</span>
+        <span class="game-time">Wed 8:00 PM · G5</span>
       </div>
     </div>
 
     <div class="side-box">
-      <b>Live Odds</b>
+      <div class="side-box-header">
+        <b>Live Odds</b>
+        <a href="odds.html">Full Odds →</a>
+      </div>
+      <!-- Wolves @ Spurs -->
       <div class="odds">
         <span class="odds-team">Spurs</span>
-        <span class="odds-num fav">-178</span>
+        <span class="odds-num fav">-420</span>
       </div>
       <div class="odds">
         <span class="odds-team">Wolves</span>
-        <span class="odds-num dog">+214</span>
+        <span class="odds-num dog">+330</span>
       </div>
+      <!-- Cavs @ Pistons -->
       <div class="odds">
         <span class="odds-team">Pistons</span>
-        <span class="odds-num fav">-140</span>
+        <span class="odds-num fav">-172</span>
       </div>
       <div class="odds">
         <span class="odds-team">Cavs</span>
-        <span class="odds-num dog">+160</span>
+        <span class="odds-num dog">+144</span>
       </div>
     </div>
 
@@ -601,7 +629,7 @@ footer {
 <footer>
   Keepin' the Score &nbsp;•&nbsp; Built for fans, not algorithms
   <br><br>
-  <a href="https://twitter.com/keepinscorehq" target="_blank" rel="noopener" class="twitter-link footer-twitter">
+  <a href="https://twitter.com/keepinscorehq" target="_blank" rel="noopener" class="footer-twitter">
     <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style="vertical-align:-2px;margin-right:6px;"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-4.714-6.231-5.401 6.231H2.746l7.73-8.835L1.254 2.25H8.08l4.253 5.622 5.911-5.622zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
     @keepinscorehq
   </a>
