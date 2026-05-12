@@ -339,6 +339,50 @@ nav a.twitter-link:hover {
   font-weight: 700;
 }
 
+/* ================= FEATURED THUMBNAIL ================= */
+.featured-thumb {
+  display: block;
+  width: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 2px;
+  position: relative;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  transition: all .25s;
+}
+.featured-thumb:hover {
+  border-color: var(--mint);
+  box-shadow: 0 0 20px rgba(177,255,205,.15);
+  transform: translateY(-2px);
+}
+.featured-thumb img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+  transition: transform .3s ease;
+}
+.featured-thumb:hover img {
+  transform: scale(1.02);
+}
+.featured-thumb-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 14px 12px;
+  background: linear-gradient(transparent, rgba(0,0,0,.75));
+  border-radius: 0 0 10px 10px;
+  pointer-events: none;
+}
+.featured-thumb-label span {
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--mint);
+}
+
 /* ================= ARTICLES ================= */
 .article-link {
   display: flex;
@@ -570,6 +614,14 @@ footer {
 
     <div class="card">
       <h3>Latest Articles</h3>
+
+      <!-- FEATURED THUMBNAIL — links to same article as the text below -->
+      <a class="featured-thumb" href="knicks-postseason-run.html">
+        <img src="RECORDS_SHATTERED_.png" alt="Records Shattered — 2026 NBA Playoffs thumbnail">
+        <div class="featured-thumb-label">
+          <span>🔥 Featured · NBA Playoffs</span>
+        </div>
+      </a>
 
       <a class="article-link" href="knicks-postseason-run.html">
         <span class="article-tag">NBA Playoffs</span>
