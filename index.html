@@ -448,47 +448,137 @@ nav a.twitter-link:hover {
   color: var(--muted);
 }
 
-/* ================= SCOREBOARD ================= */
-.score-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 12px 0;
-  border-bottom: 1px solid var(--border);
-}
-.score-row:last-child { border-bottom: none; }
-.score-name { font-weight: 700; font-size: 16px; }
-.score-record {
-  font-family: 'Anton', sans-serif;
-  font-size: 24px;
-  letter-spacing: 1px;
-  color: var(--mint);
-}
-.score-record.losing { color: #ff8080; }
+<!--
+  ============================================================
+  UPGRADED SCOREBOARD — drop this in as a replacement for the
+  existing <div class="card"> scoreboard in your index.html
+  right-column.
+  ============================================================
+-->
 
-.footer-twitter {
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  color: var(--mint);
-  text-decoration: none;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: .5px;
-  opacity: .8;
-  transition: opacity .2s;
+<div class="card scoreboard-card">
+  <h3>Scoreboard</h3>
+
+  <!-- SEASON RECORD ROWS -->
+  <div class="sb-row">
+    <div class="sb-left">
+      <div class="sb-avatar">S</div>
+      <div>
+        <div class="sb-name">Sconzo</div>
+        <div class="sb-streak">🔥 1-game win streak</div>
+      </div>
+    </div>
+    <div class="sb-right">
+      <div class="sb-record">1–0</div>
+      <div class="sb-pct">100%</div>
+    </div>
+  </div>
+
+  <div class="sb-row">
+    <div class="sb-left">
+      <div class="sb-avatar losing-av">F</div>
+      <div>
+        <div class="sb-name">Frenchie</div>
+        <div class="sb-streak sb-cold">❄️ On a cold streak</div>
+      </div>
+    </div>
+    <div class="sb-right">
+      <div class="sb-record losing">0–1</div>
+      <div class="sb-pct losing">0%</div>
+    </div>
+  </div>
+
+  <!-- HISTORY LOG -->
+  <div class="sb-section-label">Pick History</div>
+
+  <div class="sb-history">
+    <div class="sb-hist-row">
+      <span class="sb-hist-badge win">W</span>
+      <span class="sb-hist-pick">Sconzo: <b>Knicks</b></span>
+      <span class="sb-hist-result">Swept PHI 4-0</span>
+    </div>
+    <div class="sb-hist-row">
+      <span class="sb-hist-badge loss">L</span>
+      <span class="sb-hist-pick">Frenchie: <b>76ers</b></span>
+      <span class="sb-hist-result">Lost 0-4</span>
+    </div>
+  </div>
+
+  <!-- PENDING PICKS -->
+  <div class="sb-section-label">Live Picks</div>
+  <div class="sb-pending">
+    <div class="sb-pend-row">
+      <span class="sb-pend-who">Sconzo</span>
+      <span class="sb-pend-pick">Pistons</span>
+      <span class="sb-pend-vs">vs Cavs — Tied 2-2</span>
+    </div>
+    <div class="sb-pend-row">
+      <span class="sb-pend-who">Frenchie</span>
+      <span class="sb-pend-pick">Spurs</span>
+      <span class="sb-pend-vs">vs Wolves — Tied 2-2</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ============================================================
+     ADD THIS CSS INSIDE YOUR <style> TAG (or a <style> block
+     at the bottom of your page before </body>)
+     ============================================================ -->
+<style>
+.scoreboard-card { padding-bottom: 18px; }
+
+.sb-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 0; border-bottom: 1px solid var(--border);
 }
-.footer-twitter:hover { opacity: 1; }
-footer {
-  text-align: center;
-  padding: 28px;
-  color: var(--muted);
-  font-size: 12px;
-  letter-spacing: 1px;
-  border-top: 1px solid var(--border);
-  position: relative;
-  z-index: 2;
+.sb-left { display: flex; align-items: center; gap: 12px; }
+.sb-avatar {
+  width: 38px; height: 38px; border-radius: 50%; background: var(--mint-dim);
+  border: 1px solid var(--border); display: flex; align-items: center; justify-content: center;
+  font-family: 'Anton', sans-serif; font-size: 17px; color: var(--mint); flex-shrink: 0;
 }
+.sb-avatar.losing-av { background: rgba(255,128,128,.1); border-color: rgba(255,128,128,.2); color: #ff8080; }
+.sb-name { font-weight: 700; font-size: 16px; }
+.sb-streak { font-size: 11px; color: var(--muted); margin-top: 2px; font-weight: 600; letter-spacing: .5px; }
+.sb-cold { color: #7ab4ff; }
+.sb-right { text-align: right; }
+.sb-record {
+  font-family: 'Anton', sans-serif; font-size: 26px; letter-spacing: 1px; color: var(--mint); line-height: 1;
+}
+.sb-record.losing { color: #ff8080; }
+.sb-pct { font-size: 11px; color: var(--mint); font-weight: 700; letter-spacing: 1px; margin-top: 2px; }
+.sb-pct.losing { color: #ff8080; }
+
+.sb-section-label {
+  font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted);
+  font-weight: 700; margin: 16px 0 8px;
+}
+
+.sb-history { display: flex; flex-direction: column; gap: 6px; margin-bottom: 4px; }
+.sb-hist-row {
+  display: flex; align-items: center; gap: 9px; font-size: 13px; padding: 7px 10px;
+  background: var(--panel); border-radius: 8px; border: 1px solid var(--border);
+}
+.sb-hist-badge {
+  font-family: 'Anton', sans-serif; font-size: 13px; width: 22px; height: 22px;
+  border-radius: 5px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sb-hist-badge.win { background: rgba(177,255,205,.18); color: var(--mint); }
+.sb-hist-badge.loss { background: rgba(255,128,128,.15); color: #ff8080; }
+.sb-hist-pick { flex: 1; color: var(--text); }
+.sb-hist-pick b { color: var(--mint); }
+.sb-hist-result { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+
+.sb-pending { display: flex; flex-direction: column; gap: 6px; }
+.sb-pend-row {
+  display: flex; align-items: center; gap: 9px; font-size: 13px; padding: 7px 10px;
+  background: var(--panel); border-radius: 8px; border: 1px solid rgba(255,210,100,.15);
+}
+.sb-pend-who { font-weight: 700; color: var(--muted); font-size: 12px; min-width: 58px; }
+.sb-pend-pick { font-weight: 700; color: #ffd97d; flex: 1; }
+.sb-pend-vs { font-size: 11px; color: var(--muted); font-weight: 600; white-space: nowrap; }
+</style>
 
 /* ================= ANIMATION ================= */
 @keyframes fadeUp {
